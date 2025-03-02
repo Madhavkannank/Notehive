@@ -1,7 +1,0 @@
-flask
-flask_cors
-pymongo
-firebase-admin
-bcrypt
-pyjwt
-gunicorn
