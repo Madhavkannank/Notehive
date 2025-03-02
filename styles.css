@@ -5,6 +5,11 @@
     align-items: center;
 }
 
+body {
+    background-color: lightgray !important;
+}
+
+
 .navbar-brand-container {
     display: flex;
     flex-direction: column;
