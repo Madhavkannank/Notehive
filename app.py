@@ -5,6 +5,8 @@ from firebase_admin import credentials, initialize_app, storage
 import bcrypt
 import jwt
 import datetime
+import json
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -14,7 +16,8 @@ mongo_client = MongoClient('mongodb://localhost:27017/')
 db = mongo_client['notehive']
 
 # Firebase Storage Configuration
-cred = credentials.Certificate("firebase_credentials.json")
+cred_dict = json.loads(os.getenv("FIREBASE_CREDENTIALS"))
+cred = credentials.Certificate(cred_dict)
 initialize_app(cred, {'storageBucket': 'notehive.appspot.com'})
 
 # Secret Key for JWT Authentication
