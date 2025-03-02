@@ -18,7 +18,7 @@ db = mongo_client['notehive']
 # Firebase Storage Configuration
 cred_dict = json.loads(os.getenv("FIREBASE_CREDENTIALS"))
 cred = credentials.Certificate(cred_dict)
-initialize_app(cred, {'storageBucket': 'notehive.appspot.com'})
+initialize_app(cred, {'storageBucket': 'notehive-48464'})
 
 # Secret Key for JWT Authentication
 app.config['SECRET_KEY'] = 'your_secret_key_here'
