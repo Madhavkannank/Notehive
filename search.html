@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h2>Search Results {% if query %}for "{{ query }}"{% endif %}</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        {% if notes %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Department</th>
+                        <th>Description</th>
+                        <th>Uploaded By</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for note in notes %}
+                    <tr>
+                        <td>{{ note.title }}</td>
+                        <td>{{ note.department.name }}</td>
+                        <td>{{ note.description[:100] }}...</td>
+                        <td>{{ note.author.username }}</td>
+                        <td>{{ note.upload_date.strftime('%Y-%m-%d') }}</td>
+                        <td>
+                            <a href="{{ url_for('download_note', note_id=note.id) }}" class="btn btn-sm btn-success">
+                                <i class="bi bi-download"></i> Download
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            No notes found. {% if not query %}Try searching for something specific.{% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
